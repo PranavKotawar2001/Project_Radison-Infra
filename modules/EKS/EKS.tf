@@ -25,11 +25,11 @@ resource "aws_iam_role" "eks_cluster_role_my" {
 
 # Attach EKS Cluster Policy to IAM Role
 resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
-  role       = aws_iam_role.eks_cluster_role.name
+  role       = aws_iam_role.eks_cluster_role_my.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 resource "aws_iam_role_policy_attachment" "eks_service_policy" {
-  role       = aws_iam_role.eks_cluster_role.name
+  role       = aws_iam_role.eks_cluster_role_my.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
 }
 
@@ -64,17 +64,17 @@ resource "aws_iam_role" "node_role_my" {
 
 # Attach Policies to Node IAM Role
 resource "aws_iam_role_policy_attachment" "worker_node_policy" {
-  role       = aws_iam_role.node_role.name
+  role       = aws_iam_role.node_role_my.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
 resource "aws_iam_role_policy_attachment" "cni_policy" {
-  role       = aws_iam_role.node_role.name
+  role       = aws_iam_role.node_role_my.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
 resource "aws_iam_role_policy_attachment" "registry_policy" {
-  role       = aws_iam_role.node_role.name
+  role       = aws_iam_role.node_role_my.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
@@ -82,7 +82,7 @@ resource "aws_iam_role_policy_attachment" "registry_policy" {
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "eks-node-group"
-  node_role_arn   = aws_iam_role.node_role.arn
+  node_role_arn   = aws_iam_role.node_role_my.arn
   subnet_ids      = data.aws_subnets.default.ids
 
   scaling_config {
