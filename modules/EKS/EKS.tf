@@ -11,7 +11,7 @@ data "aws_subnets" "default" {
 
 # IAM Role for EKS Cluster
 resource "aws_iam_role" "eks_cluster_role_my" {
-  name =  "eks-cluster-role-1"
+  name =  "eks-cluster-role-5"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -50,7 +50,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 #  IAM for node
 resource "aws_iam_role" "node_role_my" {
-  name = "eks-node-role-3"
+  name = "eks-node-role-10"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

@@ -37,7 +37,7 @@ resource "aws_security_group" "rds_security" {
 
 
 # Subnet group for RDS
-resource "aws_db_subnet_group" "rds_subne_group_my" {
+resource "aws_db_subnet_group" "rds_subne_group_my_my" {
   name       = "db-subnet-group"
   subnet_ids = data.aws_subnets.rds_subnet.ids
   tags = {
