@@ -7,7 +7,7 @@ aws_eks_cluster_name = "my-eks-cluster"
 desired_size =2
 max_size =3
 min_size = 1
-instance_types = ["t3.micro"]
+instance_types = ["c7i-flex.large"]
 
 
 # RDS
